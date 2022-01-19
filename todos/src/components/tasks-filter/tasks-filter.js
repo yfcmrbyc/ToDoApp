@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import './task-filter.css';
 
+export default class TasksFilter extends Component {
 
-const TasksFilter = () => {
+  render() {
+
     return (
       <ul className="filters">
         <li>
@@ -15,7 +17,6 @@ const TasksFilter = () => {
           <button>Completed</button>
         </li>
       </ul>
-    )
+    ) 
   }
-
-  export default TasksFilter;
+}

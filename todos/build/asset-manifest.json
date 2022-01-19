@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ToDoApp/todos/build/static/css/main.9d836c47.css",
-    "main.js": "/ToDoApp/todos/build/static/js/main.da9a6b8c.js",
+    "main.css": "/ToDoApp/todos/build/static/css/main.046c2014.css",
+    "main.js": "/ToDoApp/todos/build/static/js/main.3782be41.js",
     "static/media/HelveticaNeueCyr-LightItalic.ttf": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-LightItalic.8d4fa63ad998071c6875.ttf",
     "static/media/HelveticaNeueCyr-Light.ttf": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Light.371670cc0c4aa701241a.ttf",
     "static/media/HelveticaNeueCyr-Roman.ttf": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Roman.0ca719c710b1fbd7e02f.ttf",
@@ -12,11 +12,11 @@
     "static/media/HelveticaNeueCyr-Light.woff2": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Light.ca1c9d28a98e39bc4088.woff2",
     "static/media/HelveticaNeueCyr-Roman.woff2": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Roman.d59df5a538d671a54c79.woff2",
     "index.html": "/ToDoApp/todos/build/index.html",
-    "main.9d836c47.css.map": "/ToDoApp/todos/build/static/css/main.9d836c47.css.map",
-    "main.da9a6b8c.js.map": "/ToDoApp/todos/build/static/js/main.da9a6b8c.js.map"
+    "main.046c2014.css.map": "/ToDoApp/todos/build/static/css/main.046c2014.css.map",
+    "main.3782be41.js.map": "/ToDoApp/todos/build/static/js/main.3782be41.js.map"
   },
   "entrypoints": [
-    "static/css/main.9d836c47.css",
-    "static/js/main.da9a6b8c.js"
+    "static/css/main.046c2014.css",
+    "static/js/main.3782be41.js"
   ]
 }
