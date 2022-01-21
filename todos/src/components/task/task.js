@@ -4,44 +4,31 @@ import './task.css'
 
 export default class Task extends Component {
 
-  state = {
-    done: false,
-  };
-
-  onLabelClick = () => {
-    this.setState(({done}) => {
-      return {
-        done: !done
-      }
-    });
-  }
-
   render() {
-    const { label, creationDate, onDeleted } = this.props;
-    const { done } = this.state;
+    const { label, creationDate, onDeleted, onToggleDone, done, inputId } = this.props;
     
-    let  labelClassName = '';
     let spanClassNames = 'description';
     if (done) {
-      labelClassName += ' checked';
       spanClassNames += ' completed';
     }
 
+
     return (
-      <div className="view">
+      <div className='view'>
         <input 
           className="toggle"
+          id={ inputId }
           type="checkbox"
-          onClick={ this.onLabelClick }
+          onClick={ onToggleDone }
           />
-        <label className={ labelClassName }>
-          <span 
-            className={ spanClassNames }
-            onClick={ this.onLabelClick }
-            >
+        <label htmlFor={ inputId }>
+          <span className={ spanClassNames }>
             { label }
           </span>
-          <span className="created"> created { formatDistanceToNow(new Date(creationDate), {includeSeconds: true, addSuffix: true} )} </span>
+          <span 
+            className="created"> 
+            created { formatDistanceToNow(creationDate, {includeSeconds: true, addSuffix: true} )} 
+          </span>
         </label>
         <button className="icon icon-edit"></button>
         <button 

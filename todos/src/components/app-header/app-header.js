@@ -1,11 +1,11 @@
 import React from "react";
 import NewTaskForm from "../new-task-form/new-task-form"
 
-const AppHeader = () => {
+const AppHeader = ({ onItemAdded }) => {
     return (
       <header>
         <h1>todos</h1>
-        <NewTaskForm />
+        <NewTaskForm onItemAdded={ (text) => onItemAdded(text) }/>
       </header>
     )
   };

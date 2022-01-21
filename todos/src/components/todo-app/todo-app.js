@@ -8,11 +8,14 @@ import './todo-app.css';
 
   
   export default class TodoApp extends Component {
+
+    maxId = 100;
+
     state = {
       todoData: [
-        {label: 'Completed task', done: false, id: 1, creationDate: new Date(), isEditing: false},
-        {label: 'Edition task', done: false, id: 2, creationDate: new Date(), isEditing: false},
-        {label: 'Active task', done: false, id: 3, creationDate: new Date(), isEditing: false}
+        this.createTodoItem('Completed task'),
+        this.createTodoItem('Edition task'),
+        this.createTodoItem('Active task')
       ],
     };
 
@@ -23,17 +26,116 @@ import './todo-app.css';
         }
       });
     }
+
+    deleteCompleted = () => {
+      this.state.todoData.forEach(element => {
+        if (element.done) {
+          this.deleteItem(element.id);
+        }
+      })
+    }
+
+    addItem = (label) => {
+      this.setState(({ todoData }) => {
+        return{
+          todoData: [
+            ...todoData,
+            this.createTodoItem(label)
+          ]
+        }
+      })
+    }
+
+    createTodoItem(label) {
+      return {
+        label, 
+        done: false,
+        creationDate: new Date(),
+        isHidden: false,
+        id: this.maxId++,
+        inputId: this.maxId++
+      }
+    }
+
+    onToggleDone = (id) => {
+      this.setState(({ todoData }) => {
+        return {
+          todoData: this.toggleProperty(todoData, id, 'done')
+        }
+      });
+    }
+
+    toggleProperty(arr, id, propName) {
+      const idx = arr.findIndex(element => element.id === id);
+      const [ oldItem ] = arr.filter(element => element.id === id);
+      const newItem = {...oldItem, [propName]: !oldItem[propName]};
+
+      return [
+          ...arr.slice(0, idx),
+          newItem,
+          ...arr.slice(idx + 1)
+        ]
+    }
+
+    hideActive = () => {
+      this.setState(({ todoData }) => {
+        const newArr = todoData.map(element => {
+          return {...element, isHidden: !element.done}
+        })
+
+        return {
+          todoData: newArr
+        }
+      });
+    }
+
+    hideCompleted = () => {
+      this.setState(({ todoData }) => {
+        const newArr = todoData.map(element => {
+          return {...element, isHidden: element.done}
+        })
+
+        return {
+          todoData: newArr
+        }
+      });
+    }
+
+    showAll = () => {
+      this.setState(({ todoData }) => {
+        const newArr = todoData.map(element => {
+          return {...element, isHidden: false}
+        })
+
+        return {
+          todoData: newArr
+        }
+      });
+    }
+
   
     render() {
+
+      const { todoData } = this.state;
+      const todoCount = todoData.length - todoData.filter(el => el.done).length;
+
+
       return (
         <main className="todoapp">
-          <AppHeader />
+          <AppHeader onItemAdded={ this.addItem }/>
           <section className="main">
             <TaskList 
-              todos = {this.state.todoData}
+              todos = { todoData }
               onDeleted={ this.deleteItem }
+              onToggleDone={ this.onToggleDone }
             />
-            <Footer />
+            <Footer 
+              toDo={ todoCount }
+              onDeleteCompleted={ this.deleteCompleted }
+              onHideActive={ this.hideActive }
+              onHideCompleted={ this.hideCompleted }
+              onShowAll={ this.showAll }
+              />
           </section>
         </main>
       );

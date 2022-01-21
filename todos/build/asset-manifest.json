@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/ToDoApp/todos/build/static/css/main.046c2014.css",
-    "main.js": "/ToDoApp/todos/build/static/js/main.3782be41.js",
-    "static/media/HelveticaNeueCyr-LightItalic.ttf": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-LightItalic.8d4fa63ad998071c6875.ttf",
-    "static/media/HelveticaNeueCyr-Light.ttf": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Light.371670cc0c4aa701241a.ttf",
-    "static/media/HelveticaNeueCyr-Roman.ttf": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Roman.0ca719c710b1fbd7e02f.ttf",
-    "static/media/HelveticaNeueCyr-LightItalic.woff": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-LightItalic.0fed6012d90fb1053b8e.woff",
-    "static/media/HelveticaNeueCyr-Light.woff": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Light.c1b4dce50601b85b61e7.woff",
-    "static/media/HelveticaNeueCyr-Roman.woff": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Roman.0247694e510ebe67cce1.woff",
-    "static/media/HelveticaNeueCyr-LightItalic.woff2": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-LightItalic.bd4e9d1d0813fa37c753.woff2",
-    "static/media/HelveticaNeueCyr-Light.woff2": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Light.ca1c9d28a98e39bc4088.woff2",
-    "static/media/HelveticaNeueCyr-Roman.woff2": "/ToDoApp/todos/build/static/media/HelveticaNeueCyr-Roman.d59df5a538d671a54c79.woff2",
+    "main.css": "/ToDoApp/todos/build/static/css/main.46a8b0c5.css",
+    "main.js": "/ToDoApp/todos/build/static/js/main.16aed5ef.js",
     "index.html": "/ToDoApp/todos/build/index.html",
-    "main.046c2014.css.map": "/ToDoApp/todos/build/static/css/main.046c2014.css.map",
-    "main.3782be41.js.map": "/ToDoApp/todos/build/static/js/main.3782be41.js.map"
+    "main.46a8b0c5.css.map": "/ToDoApp/todos/build/static/css/main.46a8b0c5.css.map",
+    "main.16aed5ef.js.map": "/ToDoApp/todos/build/static/js/main.16aed5ef.js.map"
   },
   "entrypoints": [
-    "static/css/main.046c2014.css",
-    "static/js/main.3782be41.js"
+    "static/css/main.46a8b0c5.css",
+    "static/js/main.16aed5ef.js"
   ]
 }
