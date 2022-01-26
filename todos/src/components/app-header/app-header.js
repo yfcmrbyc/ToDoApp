@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import NewTaskForm from "../new-task-form/new-task-form"
 
 const AppHeader = ({ onItemAdded }) => {
@@ -9,5 +11,9 @@ const AppHeader = ({ onItemAdded }) => {
       </header>
     )
   };
+
+  AppHeader.propTypes = {
+    onItemAdded: PropTypes.func.isRequired
+  }
 
   export default AppHeader;

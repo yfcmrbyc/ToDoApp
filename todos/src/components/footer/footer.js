@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import TasksFilter from '../tasks-filter/tasks-filter'
 import './footer.css';
 
@@ -15,12 +17,25 @@ const Footer = ({ toDo, onDeleteCompleted, onHideActive, onHideCompleted, onShow
         />
         <button 
           className="clear-completed"
-          onClick={ () => onDeleteCompleted() }
+          onClick={ onDeleteCompleted }
           >
             Clear completed
           </button>
       </footer>
     )
   };
+
+  Footer.defaultProps = {
+    onDeleteCompleted: () => {},
+    toDo: 0
+  }
+
+  Footer.propTypes = {
+    toDo: PropTypes.number,
+    onDeleteCompleted: PropTypes.func,
+    onHideActive: PropTypes.func.isRequired,
+    onHideCompleted: PropTypes.func.isRequired,
+    onShowAll: PropTypes.func.isRequired
+  }
 
   export default Footer;

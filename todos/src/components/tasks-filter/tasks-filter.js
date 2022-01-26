@@ -1,7 +1,21 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
 import './task-filter.css';
 
 export default class TasksFilter extends Component {
+
+  static defaultProps = {
+    onHideActive: () => {},
+    onHideCompleted: () => {},
+    onShowAll: () => {}
+  }
+
+  static propTypes = {
+    onShowAll: PropTypes.func,
+    onHideCompleted: PropTypes.func,
+    onHideActive: PropTypes.func
+  }
 
   state = {
     buttonAll: 'selected',
