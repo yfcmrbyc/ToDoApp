@@ -7,9 +7,8 @@ import Footer from '../footer/footer';
 import './todo-app.css';
 
 export default class TodoApp extends Component {
-
   state = {
-    todoData: []
+    todoData: [],
   };
 
   componentDidMount() {

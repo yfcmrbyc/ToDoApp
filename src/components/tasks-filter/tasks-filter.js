@@ -7,8 +7,8 @@ import './task-filter.css';
 export const ACTIONS = {
   ALL: 'All',
   ACTIVE: 'Active',
-  COMPLETED: 'Completed'
-}
+  COMPLETED: 'Completed',
+};
 
 export default class TasksFilter extends Component {
   static defaultProps = {
@@ -24,27 +24,27 @@ export default class TasksFilter extends Component {
   };
 
   state = {
-    currentStatus: ACTIONS.ALL
+    currentStatus: ACTIONS.ALL,
   };
 
   onClickCompleted = () => {
     this.props.hideActiveElements();
     this.setState(() => ({
-      currentStatus: ACTIONS.COMPLETED
+      currentStatus: ACTIONS.COMPLETED,
     }));
   };
 
   onClickActive = () => {
     this.props.hideCompletedElements();
     this.setState(() => ({
-      currentStatus: ACTIONS.ACTIVE
+      currentStatus: ACTIONS.ACTIVE,
     }));
   };
 
   onClickAll = () => {
     this.props.showAllElements();
     this.setState(() => ({
-      currentStatus: ACTIONS.ALL
+      currentStatus: ACTIONS.ALL,
     }));
   };
 
@@ -52,13 +52,13 @@ export default class TasksFilter extends Component {
     const { currentStatus } = this.state;
 
     const btnAll = classNames({
-      'selected': currentStatus === 'All'
+      selected: currentStatus === 'All',
     });
     const btnActive = classNames({
-      'selected': currentStatus === 'Active'
+      selected: currentStatus === 'Active',
     });
     const btnCompleted = classNames({
-      'selected': currentStatus === 'Completed'
+      selected: currentStatus === 'Completed',
     });
 
     return (

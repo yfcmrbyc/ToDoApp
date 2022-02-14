@@ -6,9 +6,8 @@ import classNames from 'classnames';
 import './task.css';
 
 function Task({ label, creationDate, onDeleted, onToggleDone, done, id }) {
-
   const spanClassName = classNames('description', {
-    ' completed': done
+    ' completed': done,
   });
 
   const date = formatDistanceToNow(new Date(creationDate), { includeSeconds: true, addSuffix: true });
@@ -18,9 +17,7 @@ function Task({ label, creationDate, onDeleted, onToggleDone, done, id }) {
       <input className="toggle" id={id} type="checkbox" onClick={onToggleDone} defaultChecked={done} />
       <label htmlFor={id}>
         <span className={spanClassName}>{label}</span>
-        <span className="created">
-          created {date}
-        </span>
+        <span className="created">created {date}</span>
       </label>
       <button type="button" className="icon icon-edit" aria-label="edit" />
       <button type="button" className="icon icon-destroy" onClick={onDeleted} aria-label="delete" />
@@ -36,11 +33,7 @@ Task.defaultProps = {
 
 Task.propTypes = {
   label: PropTypes.string.isRequired,
-  creationDate: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ])
-  .isRequired,
+  creationDate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onDeleted: PropTypes.func,
   onToggleDone: PropTypes.func,
   done: PropTypes.bool,
