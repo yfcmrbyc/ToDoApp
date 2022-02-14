@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import TasksFilter from '../tasks-filter/tasks-filter';
 import './footer.css';
 
-function Footer({ toDo, onDeleteCompleted, onHideActive, onHideCompleted, onShowAll }) {
+function Footer({ toDo, onDeleteCompleted, hideActiveElements, hideCompletedElements, showAllElements }) {
   return (
     <footer className="footer">
       <span className="task-count"> {toDo} items left</span>
       <TasksFilter
-        onHideActive={() => onHideActive()}
-        onHideCompleted={() => onHideCompleted()}
-        onShowAll={() => onShowAll()}
+        hideActiveElements={() => hideActiveElements()}
+        hideCompletedElements={() => hideCompletedElements()}
+        showAllElements={() => showAllElements()}
       />
       <button type="button" className="clear-completed" onClick={onDeleteCompleted}>
         Clear completed
@@ -28,9 +28,9 @@ Footer.defaultProps = {
 Footer.propTypes = {
   toDo: PropTypes.number,
   onDeleteCompleted: PropTypes.func,
-  onHideActive: PropTypes.func.isRequired,
-  onHideCompleted: PropTypes.func.isRequired,
-  onShowAll: PropTypes.func.isRequired,
+  hideActiveElements: PropTypes.func.isRequired,
+  hideCompletedElements: PropTypes.func.isRequired,
+  showAllElements: PropTypes.func.isRequired,
 };
 
 export default Footer;

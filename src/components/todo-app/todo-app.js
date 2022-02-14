@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import AppHeader from '../app-header/app-header';
+import { v4 as uuidv4 } from 'uuid';
+
+import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
 import './todo-app.css';
 
 export default class TodoApp extends Component {
-  maxId = 100;
 
   state = {
-    todoData: [
-      this.createTodoItem('Completed task'),
-      this.createTodoItem('Edition task'),
-      this.createTodoItem('Active task'),
-    ],
+    todoData: []
   };
+
+  componentDidMount() {
+    this.setState(JSON.parse(localStorage.getItem('todoState')));
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('todoState', JSON.stringify(this.state));
+  }
 
   deleteItem = (id) => {
     this.setState(({ todoData }) => ({
@@ -83,10 +88,9 @@ export default class TodoApp extends Component {
     return {
       label,
       done: false,
-      creationDate: new Date(),
+      creationDate: Date.now(),
       isHidden: false,
-      id: this.maxId++,
-      inputId: this.maxId++,
+      id: uuidv4(),
     };
   }
 
@@ -96,15 +100,15 @@ export default class TodoApp extends Component {
 
     return (
       <main className="todoapp">
-        <AppHeader onItemAdded={this.addItem} />
+        <NewTaskForm addItem={this.addItem} />
         <section className="main">
           <TaskList todos={todoData} onDeleted={this.deleteItem} onToggleDone={this.onToggleDone} />
           <Footer
             toDo={todoCount}
             onDeleteCompleted={this.deleteCompleted}
-            onHideActive={this.hideActive}
-            onHideCompleted={this.hideCompleted}
-            onShowAll={this.showAll}
+            hideActiveElements={this.hideActive}
+            hideCompletedElements={this.hideCompleted}
+            showAllElements={this.showAll}
           />
         </section>
       </main>
