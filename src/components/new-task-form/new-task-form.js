@@ -25,8 +25,9 @@ export default class NewTaskForm extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.props.addItem(this.state.label);
+
     this.setState(() => ({
-      label: '',
+      label: ''
     }));
   };
 
