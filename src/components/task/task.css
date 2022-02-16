@@ -118,29 +118,29 @@ label {
 
 .icon-pause,
 .icon-play {
-	font-size: 18px;
-	width: 18px;
-	height: 18px;
-    position: relative;
-    right: 7px;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  right: 7px;
 }
 
 .icon-play {
-	font-size: 15px;
-    top: 3px;
+  font-size: 15px;
+  top: 3px;
 }
 
 .icon-pause:after {
-	content: '⏸';
+  content: '⏸';
 }
 
 .icon-play:after {
-	content: '▶';
+  content: '▶';
 }
 
 .task_timer {
-    font-size: 13px;
-    color: gray;
-    display: flex;
-    align-items: inherit;
+  font-size: 13px;
+  color: gray;
+  display: flex;
+  align-items: inherit;
 }

@@ -27,7 +27,7 @@ export default class NewTaskForm extends Component {
     this.props.addItem(this.state.label);
 
     this.setState(() => ({
-      label: ''
+      label: '',
     }));
   };
 
