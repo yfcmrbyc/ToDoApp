@@ -33,9 +33,9 @@ export default class TodoApp extends Component {
     });
   };
 
-  addItem = (label) => {
+  addItem = (label, minutes, seconds) => {
     this.setState(({ todoData }) => ({
-      todoData: [...todoData, this.createTodoItem(label)],
+      todoData: [...todoData, this.createTodoItem(label, minutes, seconds)],
     }));
   };
 
@@ -83,9 +83,11 @@ export default class TodoApp extends Component {
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
   }
 
-  createTodoItem(label) {
+  createTodoItem(label, minutes, seconds) {
     return {
       label,
+      minutes,
+      seconds,
       done: false,
       creationDate: Date.now(),
       isHidden: false,

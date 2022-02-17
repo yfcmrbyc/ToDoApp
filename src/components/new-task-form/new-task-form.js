@@ -13,35 +13,73 @@ export default class NewTaskForm extends Component {
   };
 
   state = {
+    sumbitted: false,
     label: '',
+    minutes: '',
+    seconds: ''
   };
 
   onLabelChange = (event) => {
     this.setState(() => ({
-      label: event.target.value,
+      sumbitted: false,
     }));
+
+    const { value, name } = event.target;
+
+    this.setState(() => ({
+      [name]: value
+    }))
+
+    if (name === 'seconds') {
+      event.target.addEventListener('keyup', this.onSubmit);
+    }
   };
 
   onSubmit = (event) => {
-    event.preventDefault();
-    this.props.addItem(this.state.label);
+    
+    const { label, minutes, seconds } = this.state;
 
-    this.setState(() => ({
-      label: '',
-    }));
+    if (event.code === 'Enter' && !this.state.sumbitted) {
+      this.props.addItem(label, minutes, seconds);
+
+      this.setState(() => ({
+        sumbitted: true,
+        label: '',
+        minutes: '',
+        seconds: ''
+      }));
+    }
+    
   };
 
   render() {
     return (
       <header>
         <h1>todos</h1>
-        <form onSubmit={this.onSubmit}>
+        <form>
           <input
-            type="text"
-            className="new-task-form"
-            placeholder="What needs to be done?"
-            onChange={this.onLabelChange}
-            value={this.state.label}
+              type="text"
+              name="label"
+              className="new-task-form"
+              placeholder="What needs to be done?"
+              onChange={this.onLabelChange}
+              value={this.state.label}
+          />
+          <input
+              type="number"
+              name="minutes"
+              className="new-task-form new-task-form__timer"
+              placeholder="Min"
+              onChange={this.onLabelChange}
+              value={this.state.minutes}
+          />
+          <input
+              type="number"
+              name="seconds"
+              className="new-task-form new-task-form__timer"
+              placeholder="Sec"
+              onChange={this.onLabelChange}
+              value={this.state.seconds}
           />
         </form>
       </header>
