@@ -7,8 +7,7 @@ import './task-list.css';
 
 function TaskList({todos, onDeleted, onToggleDone}) {
 
-  renderTask = (todos) =>
-    todos.map((item) => {
+  const renderTask = (todos) => todos.map((item) => {
       const { isHidden, ...itemProps } = item;
 
       const liClass = classNames({
@@ -22,7 +21,7 @@ function TaskList({todos, onDeleted, onToggleDone}) {
       );
     });
 
-   return <ul className="task-list">{this.renderTask(todos)}</ul>;
+   return <ul className="task-list">{renderTask(todos)}</ul>;
 }
 
 TaskList.propTypes = {
