@@ -16,14 +16,14 @@ function Task({ label, creationDate, onDeleted, onToggleDone, done, id, minutes,
 
   return (
     <div className="view">
-      <input className="toggle" id={id} type="checkbox" onClick={onToggleDone} defaultChecked={done} />
+      <input className="toggle" id={id} type="checkbox" onClick={onToggleDone(id)} defaultChecked={done} />
       <label htmlFor={id}>
         <span className={spanClassName}>{label}</span>
         <Timer done={done} minutes={minutes} seconds={seconds} />
         <span className="created">created {date}</span>
       </label>
       <button type="button" className="icon icon-edit" aria-label="edit" />
-      <button type="button" className="icon icon-destroy" onClick={onDeleted} aria-label="delete" />
+      <button type="button" className="icon icon-destroy" onClick={onDeleted(id)} aria-label="delete" />
     </div>
   );
 }
