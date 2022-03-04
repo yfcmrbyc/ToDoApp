@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import NewTaskForm from '../new-task-form/new-task-form';
@@ -6,111 +6,81 @@ import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
 import './todo-app.css';
 
-export default class TodoApp extends Component {
-  state = {
-    todoData: [],
-  };
+function TodoApp() {
+  const [todoData, setTodoData] = useState([]);
 
-  componentDidMount() {
-    this.setState(JSON.parse(localStorage.getItem('todoState')));
-  }
+  useEffect(() => {
+    const { todoData: localTodoData } = JSON.parse(localStorage.getItem('todoState'));
+    setTodoData(() => localTodoData);
+  }, []);
 
-  componentDidUpdate() {
-    localStorage.setItem('todoState', JSON.stringify(this.state));
-  }
+  useEffect(() => localStorage.setItem('todoState', JSON.stringify({ todoData })), [todoData]);
 
-  deleteItem = (id) => {
-    this.setState(({ todoData }) => ({
-      todoData: todoData.filter((element) => element.id !== id),
-    }));
-  };
+  const createTodoItem = (label) => ({
+    label,
+    done: false,
+    creationDate: Date.now(),
+    isHidden: false,
+    id: uuidv4(),
+  });
 
-  deleteCompleted = () => {
-    this.state.todoData.forEach((element) => {
-      if (element.done) {
-        this.deleteItem(element.id);
-      }
-    });
-  };
-
-  addItem = (label) => {
-    this.setState(({ todoData }) => ({
-      todoData: [...todoData, this.createTodoItem(label)],
-    }));
-  };
-
-  onToggleDone = (id) => {
-    this.setState(({ todoData }) => ({
-      todoData: this.toggleProperty(todoData, id, 'done'),
-    }));
-  };
-
-  hideActive = () => {
-    this.setState(({ todoData }) => {
-      const newArr = todoData.map((element) => ({ ...element, isHidden: !element.done }));
-
-      return {
-        todoData: newArr,
-      };
-    });
-  };
-
-  hideCompleted = () => {
-    this.setState(({ todoData }) => {
-      const newArr = todoData.map((element) => ({ ...element, isHidden: element.done }));
-
-      return {
-        todoData: newArr,
-      };
-    });
-  };
-
-  showAll = () => {
-    this.setState(({ todoData }) => {
-      const newArr = todoData.map((element) => ({ ...element, isHidden: false }));
-
-      return {
-        todoData: newArr,
-      };
-    });
-  };
-
-  toggleProperty(arr, id, propName) {
+  const toggleProperty = (arr, id, propName) => {
     const idx = arr.findIndex((element) => element.id === id);
     const [oldItem] = arr.filter((element) => element.id === id);
     const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
-  }
+  };
 
-  createTodoItem(label) {
-    return {
-      label,
-      done: false,
-      creationDate: Date.now(),
-      isHidden: false,
-      id: uuidv4(),
-    };
-  }
+  const deleteItem = (id) => {
+    setTodoData(() => todoData.filter((element) => element.id !== id));
+  };
 
-  render() {
-    const { todoData } = this.state;
-    const todoCount = todoData.length - todoData.filter((el) => el.done).length;
+  const deleteCompleted = () => {
+    todoData.forEach((element) => {
+      if (element.done) {
+        deleteItem(element.id);
+      }
+    });
+  };
 
-    return (
-      <main className="todoapp">
-        <NewTaskForm addItem={this.addItem} />
-        <section className="main">
-          <TaskList todos={todoData} onDeleted={this.deleteItem} onToggleDone={this.onToggleDone} />
-          <Footer
-            toDo={todoCount}
-            onDeleteCompleted={this.deleteCompleted}
-            hideActiveElements={this.hideActive}
-            hideCompletedElements={this.hideCompleted}
-            showAllElements={this.showAll}
-          />
-        </section>
-      </main>
-    );
-  }
+  const addItem = (label) => {
+    setTodoData(() => [...todoData, createTodoItem(label)]);
+  };
+
+  const onToggleDone = (id) => {
+    setTodoData(() => toggleProperty(todoData, id, 'done'));
+  };
+
+  const hideActive = () => {
+    setTodoData(() => todoData.map((element) => ({ ...element, isHidden: !element.done })));
+  };
+
+  const hideCompleted = () => {
+    setTodoData(() => todoData.map((element) => ({ ...element, isHidden: element.done })));
+  };
+
+  const showAll = () => {
+    setTodoData(() => todoData.map((element) => ({ ...element, isHidden: false })));
+  };
+
+  const todoCount = todoData.length - todoData.filter((el) => el.done).length;
+
+  return (
+    <main className="todoapp">
+      <NewTaskForm addItem={addItem} />
+      <section className="main">
+        <TaskList todos={todoData} onDeleted={deleteItem} onToggleDone={onToggleDone} />
+        <Footer
+          toDo={todoCount}
+          onDeleteCompleted={deleteCompleted}
+          hideActiveElements={hideActive}
+          hideCompletedElements={hideCompleted}
+          showAllElements={showAll}
+        />
+      </section>
+    </main>
+  );
 }
+
+export default TodoApp;
