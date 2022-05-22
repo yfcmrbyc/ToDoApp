@@ -10,8 +10,11 @@ function TodoApp() {
   const [todoData, setTodoData] = useState([]);
 
   useEffect(() => {
-    const { todoData: localTodoData } = JSON.parse(localStorage.getItem('todoState'));
-    setTodoData(() => localTodoData);
+    const localData = JSON.parse(localStorage.getItem('todoState'));
+    if (localData) {
+      const { todoData: localTodoData } = localData;
+      setTodoData(() => localTodoData);
+    }
   }, []);
 
   useEffect(() => localStorage.setItem('todoState', JSON.stringify({ todoData })), [todoData]);
